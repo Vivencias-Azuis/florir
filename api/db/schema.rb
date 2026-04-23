@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_23_173848) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_23_174027) do
   create_table "clinics", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "email", null: false
@@ -20,6 +20,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_23_173848) do
     t.string "slug", null: false
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_clinics_on_slug", unique: true
+  end
+
+  create_table "family_accesses", force: :cascade do |t|
+    t.string "access_token"
+    t.boolean "active", null: false
+    t.datetime "created_at", null: false
+    t.integer "patient_id", null: false
+    t.string "relation", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["access_token"], name: "index_family_accesses_on_access_token", unique: true
+    t.index ["patient_id"], name: "index_family_accesses_on_patient_id"
+    t.index ["user_id"], name: "index_family_accesses_on_user_id"
   end
 
   create_table "goal_progresses", force: :cascade do |t|
@@ -34,6 +47,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_23_173848) do
     t.index ["goal_id"], name: "index_goal_progresses_on_goal_id"
     t.index ["session_id"], name: "index_goal_progresses_on_session_id"
     t.index ["therapist_id"], name: "index_goal_progresses_on_therapist_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body", null: false
+    t.integer "clinic_id", null: false
+    t.datetime "created_at", null: false
+    t.integer "patient_id", null: false
+    t.datetime "read_at"
+    t.integer "receiver_id", null: false
+    t.integer "sender_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["clinic_id"], name: "index_messages_on_clinic_id"
+    t.index ["patient_id"], name: "index_messages_on_patient_id"
   end
 
   create_table "patients", force: :cascade do |t|
@@ -94,9 +120,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_23_173848) do
     t.index ["clinic_id"], name: "index_users_on_clinic_id"
   end
 
+  add_foreign_key "family_accesses", "patients"
+  add_foreign_key "family_accesses", "users"
   add_foreign_key "goal_progresses", "therapeutic_goals", column: "goal_id"
   add_foreign_key "goal_progresses", "therapy_sessions", column: "session_id"
   add_foreign_key "goal_progresses", "users", column: "therapist_id"
+  add_foreign_key "messages", "clinics"
+  add_foreign_key "messages", "patients"
+  add_foreign_key "messages", "users", column: "receiver_id"
+  add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "patients", "clinics"
   add_foreign_key "therapeutic_goals", "clinics"
   add_foreign_key "therapeutic_goals", "patients"
