@@ -7,3 +7,618 @@ Generating image variants require the image_processing gem. Please add `gem "ima
   [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2026-04-23 17:21:29.059835', '2026-04-23 17:21:29.059836') RETURNING "key" /*application='Api'*/[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Api'*/[0m
 Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Api'*/[0m
+Migrating to CreateClinics (20260423172420)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Api'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "clinics" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "slug" varchar, "email" varchar, "phone" varchar, "plan" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_clinics_on_slug" ON "clinics" ("slug") /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260423172420') RETURNING "version" /*application='Api'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Api'*/[0m
+Migrating to CreateUsers (20260423172424)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Api'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "role" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_e1521f1719"
+FOREIGN KEY ("clinic_id")
+  REFERENCES "clinics" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_users_on_clinic_id" ON "users" ("clinic_id") /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260423172424') RETURNING "version" /*application='Api'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Api'*/[0m
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Api'*/[0m
+Migrating to AddNotNullConstraintsToClinicsAndUsers (20260423173049)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Api'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aclinics" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "slug" varchar, "email" varchar, "phone" varchar, "plan" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_aclinics_on_slug" ON "aclinics" ("slug") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "aclinics" ("id","name","slug","email","phone","plan","created_at","updated_at")
+                     SELECT "id","name","slug","email","phone","plan","created_at","updated_at" FROM "clinics" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "clinics" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "clinics" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "slug" varchar, "email" varchar, "phone" varchar, "plan" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_clinics_on_slug" ON "clinics" ("slug") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "clinics" ("id","name","slug","email","phone","plan","created_at","updated_at")
+                     SELECT "id","name","slug","email","phone","plan","created_at","updated_at" FROM "aclinics" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "aclinics" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aclinics" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "slug" varchar, "email" varchar, "phone" varchar, "plan" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_aclinics_on_slug" ON "aclinics" ("slug") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "aclinics" ("id","name","slug","email","phone","plan","created_at","updated_at")
+                     SELECT "id","name","slug","email","phone","plan","created_at","updated_at" FROM "clinics" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "clinics" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "clinics" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "slug" varchar NOT NULL, "email" varchar, "phone" varchar, "plan" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_clinics_on_slug" ON "clinics" ("slug") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "clinics" ("id","name","slug","email","phone","plan","created_at","updated_at")
+                     SELECT "id","name","slug","email","phone","plan","created_at","updated_at" FROM "aclinics" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "aclinics" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aclinics" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "slug" varchar NOT NULL, "email" varchar, "phone" varchar, "plan" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_aclinics_on_slug" ON "aclinics" ("slug") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "aclinics" ("id","name","slug","email","phone","plan","created_at","updated_at")
+                     SELECT "id","name","slug","email","phone","plan","created_at","updated_at" FROM "clinics" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "clinics" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "clinics" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "slug" varchar NOT NULL, "email" varchar NOT NULL, "phone" varchar, "plan" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_clinics_on_slug" ON "clinics" ("slug") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "clinics" ("id","name","slug","email","phone","plan","created_at","updated_at")
+                     SELECT "id","name","slug","email","phone","plan","created_at","updated_at" FROM "aclinics" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "aclinics" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "ausers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "role" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_ausers_on_clinic_id" ON "ausers" ("clinic_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "ausers" ("id","clinic_id","name","email","password_digest","role","created_at","updated_at")
+                     SELECT "id","clinic_id","name","email","password_digest","role","created_at","updated_at" FROM "users" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "users" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "name" varchar NOT NULL, "email" varchar, "password_digest" varchar, "role" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_e1521f1719"
+FOREIGN KEY ("clinic_id")
+  REFERENCES "clinics" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_users_on_clinic_id" ON "users" ("clinic_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "users" ("id","clinic_id","name","email","password_digest","role","created_at","updated_at")
+                     SELECT "id","clinic_id","name","email","password_digest","role","created_at","updated_at" FROM "ausers" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "ausers" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "ausers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "name" varchar NOT NULL, "email" varchar, "password_digest" varchar, "role" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_ausers_on_clinic_id" ON "ausers" ("clinic_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "ausers" ("id","clinic_id","name","email","password_digest","role","created_at","updated_at")
+                     SELECT "id","clinic_id","name","email","password_digest","role","created_at","updated_at" FROM "users" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "users" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "name" varchar NOT NULL, "email" varchar NOT NULL, "password_digest" varchar, "role" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_e1521f1719"
+FOREIGN KEY ("clinic_id")
+  REFERENCES "clinics" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_users_on_clinic_id" ON "users" ("clinic_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "users" ("id","clinic_id","name","email","password_digest","role","created_at","updated_at")
+                     SELECT "id","clinic_id","name","email","password_digest","role","created_at","updated_at" FROM "ausers" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "ausers" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "ausers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "name" varchar NOT NULL, "email" varchar NOT NULL, "password_digest" varchar, "role" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_ausers_on_clinic_id" ON "ausers" ("clinic_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "ausers" ("id","clinic_id","name","email","password_digest","role","created_at","updated_at")
+                     SELECT "id","clinic_id","name","email","password_digest","role","created_at","updated_at" FROM "users" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "users" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "name" varchar NOT NULL, "email" varchar NOT NULL, "password_digest" varchar, "role" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_e1521f1719"
+FOREIGN KEY ("clinic_id")
+  REFERENCES "clinics" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_users_on_clinic_id" ON "users" ("clinic_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "users" ("id","clinic_id","name","email","password_digest","role","created_at","updated_at")
+                     SELECT "id","clinic_id","name","email","password_digest","role","created_at","updated_at" FROM "ausers" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "ausers" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "ausers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "name" varchar NOT NULL, "email" varchar NOT NULL, "password_digest" varchar, "role" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_ausers_on_clinic_id" ON "ausers" ("clinic_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "ausers" ("id","clinic_id","name","email","password_digest","role","created_at","updated_at")
+                     SELECT "id","clinic_id","name","email","password_digest","role","created_at","updated_at" FROM "users" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "users" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "name" varchar NOT NULL, "email" varchar NOT NULL, "password_digest" varchar NOT NULL, "role" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_e1521f1719"
+FOREIGN KEY ("clinic_id")
+  REFERENCES "clinics" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_users_on_clinic_id" ON "users" ("clinic_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "users" ("id","clinic_id","name","email","password_digest","role","created_at","updated_at")
+                     SELECT "id","clinic_id","name","email","password_digest","role","created_at","updated_at" FROM "ausers" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "ausers" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260423173049') RETURNING "version" /*application='Api'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Api'*/[0m
+Migrating to AddUniqueIndexToUsersClinicEmail (20260423173101)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Api'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_clinic_id_and_email" ON "users" ("clinic_id", "email") /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260423173101') RETURNING "version" /*application='Api'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Api'*/[0m
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Api'*/[0m
+Migrating to CreatePatients (20260423173437)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Api'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "patients" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "name" varchar, "birth_date" date, "diagnosis_date" date, "diagnosis_level" integer, "communication_method" varchar, "notes" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_ffa68283b8"
+FOREIGN KEY ("clinic_id")
+  REFERENCES "clinics" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_patients_on_clinic_id" ON "patients" ("clinic_id") /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260423173437') RETURNING "version" /*application='Api'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Api'*/[0m
+Migrating to CreateTherapySessions (20260423173441)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Api'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "therapy_sessions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "patient_id" integer NOT NULL, "therapist_id" integer, "scheduled_at" datetime(6), "duration_minutes" integer, "status" varchar, "modality" varchar, "session_notes" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_9ac5e11d96"
+FOREIGN KEY ("clinic_id")
+  REFERENCES "clinics" ("id")
+, CONSTRAINT "fk_rails_f3840fffec"
+FOREIGN KEY ("patient_id")
+  REFERENCES "patients" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapy_sessions_on_clinic_id" ON "therapy_sessions" ("clinic_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapy_sessions_on_patient_id" ON "therapy_sessions" ("patient_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapy_sessions_on_therapist_id" ON "therapy_sessions" ("therapist_id") /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260423173441') RETURNING "version" /*application='Api'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Api'*/[0m
+Migrating to CreateTherapeuticGoals (20260423173444)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Api'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "therapeutic_goals" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "patient_id" integer NOT NULL, "domain" varchar, "method" varchar, "title" varchar, "description" text, "target" text, "status" varchar, "started_at" date, "achieved_at" date, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_a4bbe5f447"
+FOREIGN KEY ("clinic_id")
+  REFERENCES "clinics" ("id")
+, CONSTRAINT "fk_rails_94837fda62"
+FOREIGN KEY ("patient_id")
+  REFERENCES "patients" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapeutic_goals_on_clinic_id" ON "therapeutic_goals" ("clinic_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapeutic_goals_on_patient_id" ON "therapeutic_goals" ("patient_id") /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260423173444') RETURNING "version" /*application='Api'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Api'*/[0m
+Migrating to CreateGoalProgresses (20260423173447)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Api'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "goal_progresses" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "goal_id" integer NOT NULL, "session_id" integer NOT NULL, "therapist_id" integer, "score" integer, "notes" text, "recorded_at" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_eaf6fcf35c"
+FOREIGN KEY ("goal_id")
+  REFERENCES "therapeutic_goals" ("id")
+, CONSTRAINT "fk_rails_610cc416b0"
+FOREIGN KEY ("session_id")
+  REFERENCES "therapy_sessions" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_goal_progresses_on_goal_id" ON "goal_progresses" ("goal_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_goal_progresses_on_session_id" ON "goal_progresses" ("session_id") /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260423173447') RETURNING "version" /*application='Api'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Api'*/[0m
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Api'*/[0m
+Migrating to AddConstraintsToTask3Models (20260423173848)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Api'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TEMPORARY TABLE "apatients" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "name" varchar, "birth_date" date, "diagnosis_date" date, "diagnosis_level" integer, "communication_method" varchar, "notes" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_apatients_on_clinic_id" ON "apatients" ("clinic_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "apatients" ("id","clinic_id","name","birth_date","diagnosis_date","diagnosis_level","communication_method","notes","created_at","updated_at")
+                     SELECT "id","clinic_id","name","birth_date","diagnosis_date","diagnosis_level","communication_method","notes","created_at","updated_at" FROM "patients" /*application='Api'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "patients" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "patients" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "name" varchar NOT NULL, "birth_date" date, "diagnosis_date" date, "diagnosis_level" integer, "communication_method" varchar, "notes" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_ffa68283b8"
+FOREIGN KEY ("clinic_id")
+  REFERENCES "clinics" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_patients_on_clinic_id" ON "patients" ("clinic_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "patients" ("id","clinic_id","name","birth_date","diagnosis_date","diagnosis_level","communication_method","notes","created_at","updated_at")
+                     SELECT "id","clinic_id","name","birth_date","diagnosis_date","diagnosis_level","communication_method","notes","created_at","updated_at" FROM "apatients" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "apatients" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "atherapy_sessions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "patient_id" integer NOT NULL, "therapist_id" integer, "scheduled_at" datetime(6), "duration_minutes" integer, "status" varchar, "modality" varchar, "session_notes" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_atherapy_sessions_on_therapist_id" ON "atherapy_sessions" ("therapist_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_atherapy_sessions_on_patient_id" ON "atherapy_sessions" ("patient_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_atherapy_sessions_on_clinic_id" ON "atherapy_sessions" ("clinic_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "atherapy_sessions" ("id","clinic_id","patient_id","therapist_id","scheduled_at","duration_minutes","status","modality","session_notes","created_at","updated_at")
+                     SELECT "id","clinic_id","patient_id","therapist_id","scheduled_at","duration_minutes","status","modality","session_notes","created_at","updated_at" FROM "therapy_sessions" /*application='Api'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "therapy_sessions" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "therapy_sessions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "patient_id" integer NOT NULL, "therapist_id" integer, "scheduled_at" datetime(6) NOT NULL, "duration_minutes" integer, "status" varchar, "modality" varchar, "session_notes" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_f3840fffec"
+FOREIGN KEY ("patient_id")
+  REFERENCES "patients" ("id")
+, CONSTRAINT "fk_rails_9ac5e11d96"
+FOREIGN KEY ("clinic_id")
+  REFERENCES "clinics" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapy_sessions_on_clinic_id" ON "therapy_sessions" ("clinic_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapy_sessions_on_patient_id" ON "therapy_sessions" ("patient_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapy_sessions_on_therapist_id" ON "therapy_sessions" ("therapist_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "therapy_sessions" ("id","clinic_id","patient_id","therapist_id","scheduled_at","duration_minutes","status","modality","session_notes","created_at","updated_at")
+                     SELECT "id","clinic_id","patient_id","therapist_id","scheduled_at","duration_minutes","status","modality","session_notes","created_at","updated_at" FROM "atherapy_sessions" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "atherapy_sessions" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "atherapy_sessions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "patient_id" integer NOT NULL, "therapist_id" integer, "scheduled_at" datetime(6) NOT NULL, "duration_minutes" integer, "status" varchar, "modality" varchar, "session_notes" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_atherapy_sessions_on_therapist_id" ON "atherapy_sessions" ("therapist_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_atherapy_sessions_on_patient_id" ON "atherapy_sessions" ("patient_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_atherapy_sessions_on_clinic_id" ON "atherapy_sessions" ("clinic_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "atherapy_sessions" ("id","clinic_id","patient_id","therapist_id","scheduled_at","duration_minutes","status","modality","session_notes","created_at","updated_at")
+                     SELECT "id","clinic_id","patient_id","therapist_id","scheduled_at","duration_minutes","status","modality","session_notes","created_at","updated_at" FROM "therapy_sessions" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "therapy_sessions" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "therapy_sessions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "patient_id" integer NOT NULL, "therapist_id" integer, "scheduled_at" datetime(6) NOT NULL, "duration_minutes" integer, "status" varchar NOT NULL, "modality" varchar, "session_notes" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_9ac5e11d96"
+FOREIGN KEY ("clinic_id")
+  REFERENCES "clinics" ("id")
+, CONSTRAINT "fk_rails_f3840fffec"
+FOREIGN KEY ("patient_id")
+  REFERENCES "patients" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapy_sessions_on_clinic_id" ON "therapy_sessions" ("clinic_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapy_sessions_on_patient_id" ON "therapy_sessions" ("patient_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapy_sessions_on_therapist_id" ON "therapy_sessions" ("therapist_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "therapy_sessions" ("id","clinic_id","patient_id","therapist_id","scheduled_at","duration_minutes","status","modality","session_notes","created_at","updated_at")
+                     SELECT "id","clinic_id","patient_id","therapist_id","scheduled_at","duration_minutes","status","modality","session_notes","created_at","updated_at" FROM "atherapy_sessions" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "atherapy_sessions" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "atherapy_sessions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "patient_id" integer NOT NULL, "therapist_id" integer, "scheduled_at" datetime(6) NOT NULL, "duration_minutes" integer, "status" varchar NOT NULL, "modality" varchar, "session_notes" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_atherapy_sessions_on_therapist_id" ON "atherapy_sessions" ("therapist_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_atherapy_sessions_on_patient_id" ON "atherapy_sessions" ("patient_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_atherapy_sessions_on_clinic_id" ON "atherapy_sessions" ("clinic_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "atherapy_sessions" ("id","clinic_id","patient_id","therapist_id","scheduled_at","duration_minutes","status","modality","session_notes","created_at","updated_at")
+                     SELECT "id","clinic_id","patient_id","therapist_id","scheduled_at","duration_minutes","status","modality","session_notes","created_at","updated_at" FROM "therapy_sessions" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "therapy_sessions" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "therapy_sessions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "patient_id" integer NOT NULL, "therapist_id" integer NOT NULL, "scheduled_at" datetime(6) NOT NULL, "duration_minutes" integer, "status" varchar NOT NULL, "modality" varchar, "session_notes" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_f3840fffec"
+FOREIGN KEY ("patient_id")
+  REFERENCES "patients" ("id")
+, CONSTRAINT "fk_rails_9ac5e11d96"
+FOREIGN KEY ("clinic_id")
+  REFERENCES "clinics" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapy_sessions_on_clinic_id" ON "therapy_sessions" ("clinic_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapy_sessions_on_patient_id" ON "therapy_sessions" ("patient_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapy_sessions_on_therapist_id" ON "therapy_sessions" ("therapist_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "therapy_sessions" ("id","clinic_id","patient_id","therapist_id","scheduled_at","duration_minutes","status","modality","session_notes","created_at","updated_at")
+                     SELECT "id","clinic_id","patient_id","therapist_id","scheduled_at","duration_minutes","status","modality","session_notes","created_at","updated_at" FROM "atherapy_sessions" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "atherapy_sessions" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "atherapy_sessions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "patient_id" integer NOT NULL, "therapist_id" integer NOT NULL, "scheduled_at" datetime(6) NOT NULL, "duration_minutes" integer, "status" varchar NOT NULL, "modality" varchar, "session_notes" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_atherapy_sessions_on_therapist_id" ON "atherapy_sessions" ("therapist_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_atherapy_sessions_on_patient_id" ON "atherapy_sessions" ("patient_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_atherapy_sessions_on_clinic_id" ON "atherapy_sessions" ("clinic_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "atherapy_sessions" ("id","clinic_id","patient_id","therapist_id","scheduled_at","duration_minutes","status","modality","session_notes","created_at","updated_at")
+                     SELECT "id","clinic_id","patient_id","therapist_id","scheduled_at","duration_minutes","status","modality","session_notes","created_at","updated_at" FROM "therapy_sessions" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "therapy_sessions" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "therapy_sessions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "patient_id" integer NOT NULL, "therapist_id" integer NOT NULL, "scheduled_at" datetime(6) NOT NULL, "duration_minutes" integer, "status" varchar NOT NULL, "modality" varchar, "session_notes" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_9ac5e11d96"
+FOREIGN KEY ("clinic_id")
+  REFERENCES "clinics" ("id")
+, CONSTRAINT "fk_rails_f3840fffec"
+FOREIGN KEY ("patient_id")
+  REFERENCES "patients" ("id")
+, CONSTRAINT "fk_rails_8e61070e80"
+FOREIGN KEY ("therapist_id")
+  REFERENCES "users" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapy_sessions_on_clinic_id" ON "therapy_sessions" ("clinic_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapy_sessions_on_patient_id" ON "therapy_sessions" ("patient_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapy_sessions_on_therapist_id" ON "therapy_sessions" ("therapist_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "therapy_sessions" ("id","clinic_id","patient_id","therapist_id","scheduled_at","duration_minutes","status","modality","session_notes","created_at","updated_at")
+                     SELECT "id","clinic_id","patient_id","therapist_id","scheduled_at","duration_minutes","status","modality","session_notes","created_at","updated_at" FROM "atherapy_sessions" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "atherapy_sessions" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "atherapeutic_goals" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "patient_id" integer NOT NULL, "domain" varchar, "method" varchar, "title" varchar, "description" text, "target" text, "status" varchar, "started_at" date, "achieved_at" date, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_atherapeutic_goals_on_patient_id" ON "atherapeutic_goals" ("patient_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_atherapeutic_goals_on_clinic_id" ON "atherapeutic_goals" ("clinic_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "atherapeutic_goals" ("id","clinic_id","patient_id","domain","method","title","description","target","status","started_at","achieved_at","created_at","updated_at")
+                     SELECT "id","clinic_id","patient_id","domain","method","title","description","target","status","started_at","achieved_at","created_at","updated_at" FROM "therapeutic_goals" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "therapeutic_goals" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "therapeutic_goals" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "patient_id" integer NOT NULL, "domain" varchar, "method" varchar, "title" varchar NOT NULL, "description" text, "target" text, "status" varchar, "started_at" date, "achieved_at" date, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_94837fda62"
+FOREIGN KEY ("patient_id")
+  REFERENCES "patients" ("id")
+, CONSTRAINT "fk_rails_a4bbe5f447"
+FOREIGN KEY ("clinic_id")
+  REFERENCES "clinics" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapeutic_goals_on_clinic_id" ON "therapeutic_goals" ("clinic_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapeutic_goals_on_patient_id" ON "therapeutic_goals" ("patient_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "therapeutic_goals" ("id","clinic_id","patient_id","domain","method","title","description","target","status","started_at","achieved_at","created_at","updated_at")
+                     SELECT "id","clinic_id","patient_id","domain","method","title","description","target","status","started_at","achieved_at","created_at","updated_at" FROM "atherapeutic_goals" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "atherapeutic_goals" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "atherapeutic_goals" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "patient_id" integer NOT NULL, "domain" varchar, "method" varchar, "title" varchar NOT NULL, "description" text, "target" text, "status" varchar, "started_at" date, "achieved_at" date, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_atherapeutic_goals_on_patient_id" ON "atherapeutic_goals" ("patient_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_atherapeutic_goals_on_clinic_id" ON "atherapeutic_goals" ("clinic_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "atherapeutic_goals" ("id","clinic_id","patient_id","domain","method","title","description","target","status","started_at","achieved_at","created_at","updated_at")
+                     SELECT "id","clinic_id","patient_id","domain","method","title","description","target","status","started_at","achieved_at","created_at","updated_at" FROM "therapeutic_goals" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "therapeutic_goals" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "therapeutic_goals" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "patient_id" integer NOT NULL, "domain" varchar NOT NULL, "method" varchar, "title" varchar NOT NULL, "description" text, "target" text, "status" varchar, "started_at" date, "achieved_at" date, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_a4bbe5f447"
+FOREIGN KEY ("clinic_id")
+  REFERENCES "clinics" ("id")
+, CONSTRAINT "fk_rails_94837fda62"
+FOREIGN KEY ("patient_id")
+  REFERENCES "patients" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapeutic_goals_on_clinic_id" ON "therapeutic_goals" ("clinic_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapeutic_goals_on_patient_id" ON "therapeutic_goals" ("patient_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "therapeutic_goals" ("id","clinic_id","patient_id","domain","method","title","description","target","status","started_at","achieved_at","created_at","updated_at")
+                     SELECT "id","clinic_id","patient_id","domain","method","title","description","target","status","started_at","achieved_at","created_at","updated_at" FROM "atherapeutic_goals" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "atherapeutic_goals" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "atherapeutic_goals" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "patient_id" integer NOT NULL, "domain" varchar NOT NULL, "method" varchar, "title" varchar NOT NULL, "description" text, "target" text, "status" varchar, "started_at" date, "achieved_at" date, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_atherapeutic_goals_on_patient_id" ON "atherapeutic_goals" ("patient_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_atherapeutic_goals_on_clinic_id" ON "atherapeutic_goals" ("clinic_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "atherapeutic_goals" ("id","clinic_id","patient_id","domain","method","title","description","target","status","started_at","achieved_at","created_at","updated_at")
+                     SELECT "id","clinic_id","patient_id","domain","method","title","description","target","status","started_at","achieved_at","created_at","updated_at" FROM "therapeutic_goals" /*application='Api'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "therapeutic_goals" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "therapeutic_goals" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "patient_id" integer NOT NULL, "domain" varchar NOT NULL, "method" varchar, "title" varchar NOT NULL, "description" text, "target" text, "status" varchar NOT NULL, "started_at" date, "achieved_at" date, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_94837fda62"
+FOREIGN KEY ("patient_id")
+  REFERENCES "patients" ("id")
+, CONSTRAINT "fk_rails_a4bbe5f447"
+FOREIGN KEY ("clinic_id")
+  REFERENCES "clinics" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapeutic_goals_on_clinic_id" ON "therapeutic_goals" ("clinic_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_therapeutic_goals_on_patient_id" ON "therapeutic_goals" ("patient_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "therapeutic_goals" ("id","clinic_id","patient_id","domain","method","title","description","target","status","started_at","achieved_at","created_at","updated_at")
+                     SELECT "id","clinic_id","patient_id","domain","method","title","description","target","status","started_at","achieved_at","created_at","updated_at" FROM "atherapeutic_goals" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "atherapeutic_goals" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "agoal_progresses" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "goal_id" integer NOT NULL, "session_id" integer NOT NULL, "therapist_id" integer, "score" integer, "notes" text, "recorded_at" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_agoal_progresses_on_session_id" ON "agoal_progresses" ("session_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_agoal_progresses_on_goal_id" ON "agoal_progresses" ("goal_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "agoal_progresses" ("id","goal_id","session_id","therapist_id","score","notes","recorded_at","created_at","updated_at")
+                     SELECT "id","goal_id","session_id","therapist_id","score","notes","recorded_at","created_at","updated_at" FROM "goal_progresses" /*application='Api'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "goal_progresses" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "goal_progresses" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "goal_id" integer NOT NULL, "session_id" integer NOT NULL, "therapist_id" integer, "score" integer NOT NULL, "notes" text, "recorded_at" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_610cc416b0"
+FOREIGN KEY ("session_id")
+  REFERENCES "therapy_sessions" ("id")
+, CONSTRAINT "fk_rails_eaf6fcf35c"
+FOREIGN KEY ("goal_id")
+  REFERENCES "therapeutic_goals" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_goal_progresses_on_goal_id" ON "goal_progresses" ("goal_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_goal_progresses_on_session_id" ON "goal_progresses" ("session_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "goal_progresses" ("id","goal_id","session_id","therapist_id","score","notes","recorded_at","created_at","updated_at")
+                     SELECT "id","goal_id","session_id","therapist_id","score","notes","recorded_at","created_at","updated_at" FROM "agoal_progresses" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "agoal_progresses" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "agoal_progresses" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "goal_id" integer NOT NULL, "session_id" integer NOT NULL, "therapist_id" integer, "score" integer NOT NULL, "notes" text, "recorded_at" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_agoal_progresses_on_session_id" ON "agoal_progresses" ("session_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_agoal_progresses_on_goal_id" ON "agoal_progresses" ("goal_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "agoal_progresses" ("id","goal_id","session_id","therapist_id","score","notes","recorded_at","created_at","updated_at")
+                     SELECT "id","goal_id","session_id","therapist_id","score","notes","recorded_at","created_at","updated_at" FROM "goal_progresses" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "goal_progresses" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "goal_progresses" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "goal_id" integer NOT NULL, "session_id" integer NOT NULL, "therapist_id" integer, "score" integer NOT NULL, "notes" text, "recorded_at" datetime(6) NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_eaf6fcf35c"
+FOREIGN KEY ("goal_id")
+  REFERENCES "therapeutic_goals" ("id")
+, CONSTRAINT "fk_rails_610cc416b0"
+FOREIGN KEY ("session_id")
+  REFERENCES "therapy_sessions" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_goal_progresses_on_goal_id" ON "goal_progresses" ("goal_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_goal_progresses_on_session_id" ON "goal_progresses" ("session_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "goal_progresses" ("id","goal_id","session_id","therapist_id","score","notes","recorded_at","created_at","updated_at")
+                     SELECT "id","goal_id","session_id","therapist_id","score","notes","recorded_at","created_at","updated_at" FROM "agoal_progresses" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "agoal_progresses" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "agoal_progresses" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "goal_id" integer NOT NULL, "session_id" integer NOT NULL, "therapist_id" integer, "score" integer NOT NULL, "notes" text, "recorded_at" datetime(6) NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_agoal_progresses_on_session_id" ON "agoal_progresses" ("session_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_agoal_progresses_on_goal_id" ON "agoal_progresses" ("goal_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "agoal_progresses" ("id","goal_id","session_id","therapist_id","score","notes","recorded_at","created_at","updated_at")
+                     SELECT "id","goal_id","session_id","therapist_id","score","notes","recorded_at","created_at","updated_at" FROM "goal_progresses" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "goal_progresses" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "goal_progresses" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "goal_id" integer NOT NULL, "session_id" integer NOT NULL, "therapist_id" integer NOT NULL, "score" integer NOT NULL, "notes" text, "recorded_at" datetime(6) NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_610cc416b0"
+FOREIGN KEY ("session_id")
+  REFERENCES "therapy_sessions" ("id")
+, CONSTRAINT "fk_rails_eaf6fcf35c"
+FOREIGN KEY ("goal_id")
+  REFERENCES "therapeutic_goals" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_goal_progresses_on_goal_id" ON "goal_progresses" ("goal_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_goal_progresses_on_session_id" ON "goal_progresses" ("session_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "goal_progresses" ("id","goal_id","session_id","therapist_id","score","notes","recorded_at","created_at","updated_at")
+                     SELECT "id","goal_id","session_id","therapist_id","score","notes","recorded_at","created_at","updated_at" FROM "agoal_progresses" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "agoal_progresses" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "agoal_progresses" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "goal_id" integer NOT NULL, "session_id" integer NOT NULL, "therapist_id" integer NOT NULL, "score" integer NOT NULL, "notes" text, "recorded_at" datetime(6) NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_agoal_progresses_on_session_id" ON "agoal_progresses" ("session_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_agoal_progresses_on_goal_id" ON "agoal_progresses" ("goal_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "agoal_progresses" ("id","goal_id","session_id","therapist_id","score","notes","recorded_at","created_at","updated_at")
+                     SELECT "id","goal_id","session_id","therapist_id","score","notes","recorded_at","created_at","updated_at" FROM "goal_progresses" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "goal_progresses" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "goal_progresses" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "goal_id" integer NOT NULL, "session_id" integer NOT NULL, "therapist_id" integer NOT NULL, "score" integer NOT NULL, "notes" text, "recorded_at" datetime(6) NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_eaf6fcf35c"
+FOREIGN KEY ("goal_id")
+  REFERENCES "therapeutic_goals" ("id")
+, CONSTRAINT "fk_rails_610cc416b0"
+FOREIGN KEY ("session_id")
+  REFERENCES "therapy_sessions" ("id")
+, CONSTRAINT "fk_rails_c7ea9f2e8c"
+FOREIGN KEY ("therapist_id")
+  REFERENCES "users" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_goal_progresses_on_goal_id" ON "goal_progresses" ("goal_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_goal_progresses_on_session_id" ON "goal_progresses" ("session_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "goal_progresses" ("id","goal_id","session_id","therapist_id","score","notes","recorded_at","created_at","updated_at")
+                     SELECT "id","goal_id","session_id","therapist_id","score","notes","recorded_at","created_at","updated_at" FROM "agoal_progresses" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "agoal_progresses" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_goal_progresses_on_therapist_id" ON "goal_progresses" ("therapist_id") /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260423173848') RETURNING "version" /*application='Api'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Api'*/[0m
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Api'*/[0m
+Migrating to CreateFamilyAccesses (20260423174024)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Api'*/[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "family_accesses" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "patient_id" integer NOT NULL, "user_id" integer NOT NULL, "relation" varchar NOT NULL, "access_token" varchar, "active" boolean NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_24e9f4bd32"
+FOREIGN KEY ("patient_id")
+  REFERENCES "patients" ("id")
+, CONSTRAINT "fk_rails_7903be2eda"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_family_accesses_on_patient_id" ON "family_accesses" ("patient_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_family_accesses_on_user_id" ON "family_accesses" ("user_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_family_accesses_on_access_token" ON "family_accesses" ("access_token") /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260423174024') RETURNING "version" /*application='Api'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Api'*/[0m
+Migrating to CreateMessages (20260423174027)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Api'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "messages" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "patient_id" integer NOT NULL, "sender_id" integer NOT NULL, "receiver_id" integer NOT NULL, "body" text NOT NULL, "read_at" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_2350000638"
+FOREIGN KEY ("clinic_id")
+  REFERENCES "clinics" ("id")
+, CONSTRAINT "fk_rails_d463801c8d"
+FOREIGN KEY ("patient_id")
+  REFERENCES "patients" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_messages_on_clinic_id" ON "messages" ("clinic_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_messages_on_patient_id" ON "messages" ("patient_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "amessages" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "patient_id" integer NOT NULL, "sender_id" integer NOT NULL, "receiver_id" integer NOT NULL, "body" text NOT NULL, "read_at" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_amessages_on_patient_id" ON "amessages" ("patient_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_amessages_on_clinic_id" ON "amessages" ("clinic_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "amessages" ("id","clinic_id","patient_id","sender_id","receiver_id","body","read_at","created_at","updated_at")
+                     SELECT "id","clinic_id","patient_id","sender_id","receiver_id","body","read_at","created_at","updated_at" FROM "messages" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "messages" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "messages" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "patient_id" integer NOT NULL, "sender_id" integer NOT NULL, "receiver_id" integer NOT NULL, "body" text NOT NULL, "read_at" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_d463801c8d"
+FOREIGN KEY ("patient_id")
+  REFERENCES "patients" ("id")
+, CONSTRAINT "fk_rails_2350000638"
+FOREIGN KEY ("clinic_id")
+  REFERENCES "clinics" ("id")
+, CONSTRAINT "fk_rails_b8f26a382d"
+FOREIGN KEY ("sender_id")
+  REFERENCES "users" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_messages_on_clinic_id" ON "messages" ("clinic_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_messages_on_patient_id" ON "messages" ("patient_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "messages" ("id","clinic_id","patient_id","sender_id","receiver_id","body","read_at","created_at","updated_at")
+                     SELECT "id","clinic_id","patient_id","sender_id","receiver_id","body","read_at","created_at","updated_at" FROM "amessages" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "amessages" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "amessages" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "patient_id" integer NOT NULL, "sender_id" integer NOT NULL, "receiver_id" integer NOT NULL, "body" text NOT NULL, "read_at" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_amessages_on_patient_id" ON "amessages" ("patient_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_amessages_on_clinic_id" ON "amessages" ("clinic_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "amessages" ("id","clinic_id","patient_id","sender_id","receiver_id","body","read_at","created_at","updated_at")
+                     SELECT "id","clinic_id","patient_id","sender_id","receiver_id","body","read_at","created_at","updated_at" FROM "messages" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "messages" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "messages" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "clinic_id" integer NOT NULL, "patient_id" integer NOT NULL, "sender_id" integer NOT NULL, "receiver_id" integer NOT NULL, "body" text NOT NULL, "read_at" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_b8f26a382d"
+FOREIGN KEY ("sender_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_2350000638"
+FOREIGN KEY ("clinic_id")
+  REFERENCES "clinics" ("id")
+, CONSTRAINT "fk_rails_d463801c8d"
+FOREIGN KEY ("patient_id")
+  REFERENCES "patients" ("id")
+, CONSTRAINT "fk_rails_67c67d2963"
+FOREIGN KEY ("receiver_id")
+  REFERENCES "users" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_messages_on_clinic_id" ON "messages" ("clinic_id") /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_messages_on_patient_id" ON "messages" ("patient_id") /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "messages" ("id","clinic_id","patient_id","sender_id","receiver_id","body","read_at","created_at","updated_at")
+                     SELECT "id","clinic_id","patient_id","sender_id","receiver_id","body","read_at","created_at","updated_at" FROM "amessages" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "amessages" /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Api'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260423174027') RETURNING "version" /*application='Api'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Api'*/[0m
