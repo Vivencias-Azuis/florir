@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_23_172424) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_23_173101) do
   create_table "clinics", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.string "email"
-    t.string "name"
+    t.string "email", null: false
+    t.string "name", null: false
     t.string "phone"
     t.string "plan"
-    t.string "slug"
+    t.string "slug", null: false
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_clinics_on_slug", unique: true
   end
@@ -25,11 +25,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_23_172424) do
   create_table "users", force: :cascade do |t|
     t.integer "clinic_id", null: false
     t.datetime "created_at", null: false
-    t.string "email"
-    t.string "name"
-    t.string "password_digest"
-    t.string "role"
+    t.string "email", null: false
+    t.string "name", null: false
+    t.string "password_digest", null: false
+    t.string "role", null: false
     t.datetime "updated_at", null: false
+    t.index ["clinic_id", "email"], name: "index_users_on_clinic_id_and_email", unique: true
     t.index ["clinic_id"], name: "index_users_on_clinic_id"
   end
 

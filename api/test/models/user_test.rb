@@ -3,6 +3,11 @@ require "test_helper"
 class UserTest < ActiveSupport::TestCase
   setup do
     @clinic = Clinic.create!(name: "TEA", slug: "tea", email: "c@c.com")
+    Current.clinic_id = @clinic.id
+  end
+
+  teardown do
+    Current.reset
   end
 
   test "valid admin user" do
