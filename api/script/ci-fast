@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT_DIR"
+
+run_step() {
+  local name="$1"
+  shift
+  echo "==> $name"
+  "$@"
+}
+
+maybe_bundle_exec() {
+  if [ -f "Gemfile" ]; then
+    bundle exec "$@"
+  else
+    "$@"
+  fi
+}
+
+if [ ! -f "script/check_harness" ]; then
+  echo "Missing script/check_harness"
+  exit 1
+fi
+
+run_step "check_harness" script/check_harness
+
+if [ -f ".rubocop.yml" ] || grep -q "rubocop" Gemfile.lock 2>/dev/null || grep -q "rubocop" Gemfile 2>/dev/null; then
+  run_step "rubocop" maybe_bundle_exec rubocop
+else
+  echo "==> rubocop skipped"
+fi
+
+if grep -q "brakeman" Gemfile.lock 2>/dev/null || grep -q "brakeman" Gemfile 2>/dev/null; then
+  run_step "brakeman" maybe_bundle_exec brakeman -q
+else
+  echo "==> brakeman skipped"
+fi
+
+if [ -d "spec" ] && (grep -q "rspec-rails" Gemfile.lock 2>/dev/null || grep -q "rspec-rails" Gemfile 2>/dev/null); then
+  if [ -d "spec/architecture" ]; then
+    run_step "rspec architecture" maybe_bundle_exec rspec spec/architecture
+  fi
+
+  if [ -d "spec/requests" ]; then
+    run_step "rspec requests" maybe_bundle_exec rspec spec/requests
+  else
+    echo "==> rspec requests skipped"
+  fi
+else
+  echo "==> rspec skipped"
+fi

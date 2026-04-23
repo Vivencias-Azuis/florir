@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT_DIR"
+
+required_files=(
+  "AGENTS.md"
+  "docs/architecture.md"
+  "docs/how-to-add-endpoint.md"
+  "docs/how-to-write-migration.md"
+  "docs/testing-playbook.md"
+  "script/ci-fast"
+  "script/ci-full"
+  "script/check_architecture"
+  "app/controllers/application_controller.rb"
+  "app/models/application_record.rb"
+  "spec/requests/widgets_spec.rb"
+  "spec/contracts/README.md"
+)
+
+missing=0
+
+for path in "${required_files[@]}"; do
+  if [ ! -e "$path" ]; then
+    echo "Missing required harness file: $path"
+    missing=1
+  fi
+done
+
+if [ "$missing" -ne 0 ]; then
+  exit 1
+fi
+
+echo "Harness structure looks complete"

@@ -1,0 +1,27 @@
+source "https://rubygems.org"
+ruby "4.0.2"
+
+gem "rails", "~> 8.1"
+gem "sqlite3", "~> 2.0"              # dev/test (SQLite3, compatible with Turso schema)
+gem "activerecord-libsql", "~> 0.1"  # production (Turso cloud via libSQL)
+gem "puma", ">= 5.0"
+gem "solid_cache"
+gem "solid_queue"
+gem "solid_cable"
+gem "bcrypt", "~> 3.1"
+gem "jwt", "~> 2.8"
+gem "rack-cors"
+gem "dotenv-rails", groups: [:development, :test]
+
+gem "bootsnap", require: false
+gem "kamal", require: false
+gem "thruster", require: false
+gem "tzinfo-data", platforms: %i[ windows jruby ]
+
+group :development, :test do
+  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
+  gem "minitest-rails"
+  gem "rubocop-rails-omakase", require: false
+  gem "brakeman", require: false
+  gem "bundler-audit", require: false
+end

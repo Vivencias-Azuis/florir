@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT_DIR"
+
+echo "==> ci-fast"
+script/ci-fast
+
+echo "==> check_architecture"
+script/check_architecture
+
+if [ -d "spec" ] && (grep -q "rspec-rails" Gemfile.lock 2>/dev/null || grep -q "rspec-rails" Gemfile 2>/dev/null); then
+  echo "==> rspec full"
+  if [ -f "Gemfile" ]; then
+    bundle exec rspec
+  else
+    rspec
+  fi
+else
+  echo "==> rspec full skipped"
+fi
+
+if [ -f ".simplecov" ] || grep -q "simplecov" Gemfile.lock 2>/dev/null || grep -q "simplecov" Gemfile 2>/dev/null; then
+  echo "==> coverage hook present"
+else
+  echo "==> coverage hook not detected"
+fi

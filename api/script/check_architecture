@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT_DIR"
+
+if ! command -v rg >/dev/null 2>&1; then
+  echo "ripgrep (rg) is required for script/check_architecture"
+  exit 1
+fi
+
+violations=0
+
+echo "==> checking controllers for likely query logic"
+if [ -d "app/controllers" ]; then
+  if rg -n '\.(where|joins|left_joins|pluck|find_by|find_by!|group|order|includes)\(' app/controllers; then
+    echo "Controller appears to contain query logic. Move it to model scope, query object or service."
+    violations=1
+  fi
+else
+  echo "app/controllers not found"
+fi
+
+echo "==> checking controllers for likely external clients"
+if [ -d "app/controllers" ]; then
+  if rg -n 'Net::HTTP|Faraday|HTTParty|RestClient|HTTP\.|Excon|Typhoeus' app/controllers; then
+    echo "Controller appears to contain external IO. Move it to an adapter, client or service."
+    violations=1
+  fi
+fi
+
+echo "==> checking models for likely external IO"
+if [ -d "app/models" ]; then
+  if rg -n 'Net::HTTP|Faraday|HTTParty|RestClient|HTTP\.|Excon|Typhoeus' app/models; then
+    echo "Model appears to contain external IO. Move it to an adapter, client or service."
+    violations=1
+  fi
+else
+  echo "app/models not found"
+fi
+
+echo "==> checking for generic class names"
+if [ -d "app" ]; then
+  if rg -n 'class\s+(Manager|Processor|Helper|Utils)\b' app; then
+    echo "Generic class names detected. Prefer names that communicate domain intent."
+    violations=1
+  fi
+fi
+
+echo "==> checking serializers presence"
+if [ -d "app/controllers" ] && [ ! -d "app/serializers" ]; then
+  echo "app/serializers not found. This is allowed only if another response contract layer exists."
+fi
+
+echo "==> checking request specs presence"
+if [ -d "app/controllers" ] && [ ! -d "spec/requests" ]; then
+  echo "spec/requests not found. CRUD API endpoints should usually have request specs."
+fi
+
+if [ "$violations" -ne 0 ]; then
+  echo "Architecture checks failed"
+  exit 1
+fi
+
+echo "Architecture checks passed"
