@@ -24,4 +24,10 @@ class PatientTest < ActiveSupport::TestCase
     p = Patient.new(name: "X", birth_date: 5.years.ago, diagnosis_level: 5)
     assert_not p.valid?
   end
+
+  test "clinic_id set from Current" do
+    p = Patient.create!(name: "Lucas", birth_date: 6.years.ago,
+                        diagnosis_level: 1, communication_method: "verbal")
+    assert_equal @clinic.id, p.clinic_id
+  end
 end

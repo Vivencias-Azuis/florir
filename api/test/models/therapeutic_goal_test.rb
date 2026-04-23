@@ -22,4 +22,10 @@ class TherapeuticGoalTest < ActiveSupport::TestCase
                              method: "aba", title: "X", status: "active")
     assert_not g.valid?
   end
+
+  test "invalid status" do
+    g = TherapeuticGoal.new(patient: @patient, domain: "communication",
+                             method: "aba", title: "X", status: "unknown")
+    assert_not g.valid?
+  end
 end

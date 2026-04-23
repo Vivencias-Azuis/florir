@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_23_173447) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_23_173848) do
   create_table "clinics", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "email", null: false
@@ -26,13 +26,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_23_173447) do
     t.datetime "created_at", null: false
     t.integer "goal_id", null: false
     t.text "notes"
-    t.datetime "recorded_at"
-    t.integer "score"
+    t.datetime "recorded_at", null: false
+    t.integer "score", null: false
     t.integer "session_id", null: false
-    t.integer "therapist_id"
+    t.integer "therapist_id", null: false
     t.datetime "updated_at", null: false
     t.index ["goal_id"], name: "index_goal_progresses_on_goal_id"
     t.index ["session_id"], name: "index_goal_progresses_on_session_id"
+    t.index ["therapist_id"], name: "index_goal_progresses_on_therapist_id"
   end
 
   create_table "patients", force: :cascade do |t|
@@ -42,7 +43,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_23_173447) do
     t.datetime "created_at", null: false
     t.date "diagnosis_date"
     t.integer "diagnosis_level"
-    t.string "name"
+    t.string "name", null: false
     t.text "notes"
     t.datetime "updated_at", null: false
     t.index ["clinic_id"], name: "index_patients_on_clinic_id"
@@ -53,13 +54,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_23_173447) do
     t.integer "clinic_id", null: false
     t.datetime "created_at", null: false
     t.text "description"
-    t.string "domain"
+    t.string "domain", null: false
     t.string "method"
     t.integer "patient_id", null: false
     t.date "started_at"
-    t.string "status"
+    t.string "status", null: false
     t.text "target"
-    t.string "title"
+    t.string "title", null: false
     t.datetime "updated_at", null: false
     t.index ["clinic_id"], name: "index_therapeutic_goals_on_clinic_id"
     t.index ["patient_id"], name: "index_therapeutic_goals_on_patient_id"
@@ -71,10 +72,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_23_173447) do
     t.integer "duration_minutes"
     t.string "modality"
     t.integer "patient_id", null: false
-    t.datetime "scheduled_at"
+    t.datetime "scheduled_at", null: false
     t.text "session_notes"
-    t.string "status"
-    t.integer "therapist_id"
+    t.string "status", null: false
+    t.integer "therapist_id", null: false
     t.datetime "updated_at", null: false
     t.index ["clinic_id"], name: "index_therapy_sessions_on_clinic_id"
     t.index ["patient_id"], name: "index_therapy_sessions_on_patient_id"
@@ -95,10 +96,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_23_173447) do
 
   add_foreign_key "goal_progresses", "therapeutic_goals", column: "goal_id"
   add_foreign_key "goal_progresses", "therapy_sessions", column: "session_id"
+  add_foreign_key "goal_progresses", "users", column: "therapist_id"
   add_foreign_key "patients", "clinics"
   add_foreign_key "therapeutic_goals", "clinics"
   add_foreign_key "therapeutic_goals", "patients"
   add_foreign_key "therapy_sessions", "clinics"
   add_foreign_key "therapy_sessions", "patients"
+  add_foreign_key "therapy_sessions", "users", column: "therapist_id"
   add_foreign_key "users", "clinics"
 end
