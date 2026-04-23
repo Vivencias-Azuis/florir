@@ -3,10 +3,10 @@ class TherapySessionsController < ApplicationController
 
   def index
     sessions = if params[:patient_id]
-                 Patient.find(params[:patient_id]).therapy_sessions.order(scheduled_at: :asc)
-               else
-                 TherapySession.all.order(scheduled_at: :asc)
-               end
+      Patient.find(params[:patient_id]).therapy_sessions.order(scheduled_at: :asc)
+    else
+      TherapySession.all.order(scheduled_at: :asc)
+    end
     render json: sessions.map { |s| session_json(s) }
   end
 
