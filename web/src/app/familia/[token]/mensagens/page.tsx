@@ -4,6 +4,9 @@ interface Message { id: number; body: string; sender_id: number; created_at: str
 
 export default async function FamiliaMensagensPage({ params }: { params: Promise<{ token: string }> }) {
   const { token } = await params
+  if (!token || !/^[a-zA-Z0-9_-]{16,}$/.test(token)) {
+    return <p className="p-6 text-red-500">Link inválido.</p>
+  }
   const messages = await api.get<Message[]>(`/family/${token}/messages`)
 
   return (

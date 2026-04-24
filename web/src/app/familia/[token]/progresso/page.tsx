@@ -9,6 +9,9 @@ interface DashboardData {
 
 export default async function FamiliaProgressoPage({ params }: { params: Promise<{ token: string }> }) {
   const { token } = await params
+  if (!token || !/^[a-zA-Z0-9_-]{16,}$/.test(token)) {
+    return <p className="p-6 text-red-500">Link inválido.</p>
+  }
   const data = await api.get<DashboardData>(`/family/${token}/dashboard`)
 
   return (

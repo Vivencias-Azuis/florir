@@ -4,6 +4,9 @@ interface Session { id: number; scheduled_at: string; modality: string; status: 
 
 export default async function FamiliaSessoesPage({ params }: { params: Promise<{ token: string }> }) {
   const { token } = await params
+  if (!token || !/^[a-zA-Z0-9_-]{16,}$/.test(token)) {
+    return <p className="p-6 text-red-500">Link inválido.</p>
+  }
   const sessions = await api.get<Session[]>(`/family/${token}/sessions`)
 
   return (

@@ -14,6 +14,13 @@ export default async function FamiliaLayout({
   params: Promise<{ token: string }>
 }) {
   const { token } = await params
+  if (!token || !/^[a-zA-Z0-9_-]{16,}$/.test(token)) {
+    return (
+      <div className="min-h-screen bg-blue-50 flex items-center justify-center">
+        <p className="text-red-500">Link inválido.</p>
+      </div>
+    )
+  }
   return (
     <div className="min-h-screen bg-blue-50">
       <header className="bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between">
