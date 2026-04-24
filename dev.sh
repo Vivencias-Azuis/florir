@@ -21,6 +21,10 @@ EOF
   echo "Created web/.env.local"
 fi
 
+# Free ports
+lsof -ti :3000 | xargs kill -9 2>/dev/null || true
+lsof -ti :4000 | xargs kill -9 2>/dev/null || true
+
 echo ""
 echo "Starting Florir..."
 echo "  API  → http://localhost:4000"
