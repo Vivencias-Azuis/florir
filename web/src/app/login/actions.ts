@@ -11,7 +11,7 @@ export async function loginAction(formData: FormData) {
   try {
     const data = await api.post<{ token: string }>("/auth/login", { email, password, clinic_slug })
     const cookieStore = await cookies()
-    cookieStore.set("florir_token", data.token, { httpOnly: true, secure: process.env.NODE_ENV === "production", path: "/" })
+    cookieStore.set("florir_token", data.token, { httpOnly: true, secure: process.env.NODE_ENV === "production", path: "/", sameSite: "lax", maxAge: 60 * 60 * 8 })
   } catch {
     return { error: "Email, senha ou código da clínica inválidos" }
   }

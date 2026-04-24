@@ -22,7 +22,7 @@ export function GoalProgressBar({ title, score, domain }: Props) {
         <span className="font-semibold text-slate-600">{score}%</span>
       </div>
       <div className="h-1.5 w-full rounded-full bg-slate-100">
-        <div className={`h-1.5 rounded-full ${color} transition-all`} style={{ width: `${score}%` }} />
+        <div className={`h-1.5 rounded-full ${color} transition-all`} style={{ width: `${Math.min(100, Math.max(0, score))}%` }} />
       </div>
     </div>
   )
